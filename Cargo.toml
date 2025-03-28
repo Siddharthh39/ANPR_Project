@@ -1,0 +1,16 @@
+[package]
+name = "anpr_authorization_backend"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ic-cdk = "0.17"
+candid = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+
+# Add these to prevent problematic dependencies
+[patch.crates-io]
+gix-sec = { git = "https://github.com/Byron/gitoxide", branch = "main" }

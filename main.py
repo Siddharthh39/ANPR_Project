@@ -6,19 +6,16 @@ from ipfs_utils import upload_to_ipfs
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.secret_key = 'your_secret_key_here'  # Replace with a secure key
+app.secret_key = 'your_secret_key_here' 
 
-# Hardcoded user credentials
 USERS = {
     "siddharth": "sid@12",
     "vaibhav": "vaibhav@12",
     "sarthak": "sarthak@12"
 }
 
-# Ensure the uploads folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# Connect to MySQL database
 try:
     conn = mysql.connector.connect(
         host="localhost",
@@ -35,7 +32,6 @@ try:
 except mysql.connector.Error as err:
     print(f"Error: {err}")
 
-# Authentication decorator
 def login_required(f):
     from functools import wraps
     @wraps(f)
@@ -46,12 +42,10 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# Home route (Redirects to login)
 @app.route('/')
 def home():
     return redirect(url_for('login'))
 
-# Login Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -65,14 +59,12 @@ def login():
             flash("Invalid credentials. Please try again.")
     return render_template('login.html')
 
-# Logout Route
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     flash("Logged out successfully.")
     return redirect(url_for('login'))
 
-# Dashboard Route
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -80,7 +72,6 @@ def dashboard():
     total_vehicles = cursor.fetchone()[0]
     return render_template('dashboard.html', total_vehicles=total_vehicles)
 
-# Upload Route (For ANPR Image Processing)
 @app.route('/upload', methods=['GET', 'POST'])
 @login_required
 def upload():
@@ -98,7 +89,6 @@ def upload():
         plate_number = process_image(file_path)
         
         if plate_number:
-            # Upload image to IPFS
             ipfs_hash = upload_to_ipfs(file_path)
             
             cursor.execute("SELECT * FROM vehicle_info WHERE plate = %s", (plate_number,))
@@ -121,8 +111,6 @@ def upload():
     return render_template('upload.html')
 
 
-
-# Register Vehicle Route
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
@@ -131,7 +119,6 @@ def register():
         name = request.form['name']
         phone = request.form['phone']
         try:
-            # Update the existing record instead of inserting a new one
             cursor.execute("UPDATE vehicle_info SET name=%s, phone=%s WHERE plate=%s", (name, phone, plate))
             conn.commit()
             flash("Vehicle registered successfully!")
@@ -140,7 +127,6 @@ def register():
         return redirect(url_for('vehicles'))
     return render_template('register.html', plate=plate)
 
-# View All Registered Vehicles Route
 @app.route('/vehicles')
 @login_required
 def vehicles():
@@ -148,6 +134,5 @@ def vehicles():
     records = cursor.fetchall()
     return render_template('vehicles.html', records=records)
 
-# Run Flask App
 if __name__ == '__main__':
     app.run(debug=True)
