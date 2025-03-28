@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center" data-aos="fade-up">
+  <div class="col-md-6">
+    <div class="card animate__animated animate__zoomIn">
+      <div class="card-header text-white bg-success">
+        <h4>Register Vehicle</h4>
+      </div>
+      <div class="card-body">
+        <p class="mb-4">Detected Plate Number: <strong>{{ plate }}</strong></p>
+        <form method="POST">
+          <div class="mb-3">
+            <label for="name" class="form-label">Owner's Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Enter owner name" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter phone number" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Register Vehicle</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

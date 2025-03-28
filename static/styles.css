@@ -1,0 +1,74 @@
+/* Global Background & Typography */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card Styling */
+  .card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+  }
+  
+  /* Card Header */
+  .card-header {
+    background: linear-gradient(45deg, #11998e, #38ef7d);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .card-header h4 {
+    color: #fff;
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  /* Table Styling */
+  .table {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table thead th {
+    background: linear-gradient(45deg, #2a5298, #1e3c72);
+    color: #fff;
+  }
+  
+  /* Alert Styling */
+  .alert {
+    border-radius: 8px;
+  }
+  
+  /* Footer Styling */
+  .footer {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+  }
+  
+  /* Social Links */
+  .footer .social-links a {
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .footer .social-links a:hover {
+    color: #ffc107;
+  }
+  

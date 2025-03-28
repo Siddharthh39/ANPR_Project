@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row" data-aos="fade-up">
+  <div class="col-12 text-center mb-4">
+    <h1 class="display-5">Welcome, {{ session.username|capitalize }}!</h1>
+    <p class="lead">Select a feature below to proceed.</p>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Upload Card -->
+  <div class="col-md-6" data-aos="zoom-in">
+    <div class="card mb-4 shadow">
+      <div class="card-body text-center">
+        <h5 class="card-title">Upload Image</h5>
+        <p class="card-text">Capture and process vehicle images to detect number plates.</p>
+        <a href="{{ url_for('upload') }}" class="btn btn-primary">Go to Upload</a>
+      </div>
+    </div>
+  </div>
+  <!-- Registered Vehicles Card -->
+  <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+    <div class="card mb-4 shadow">
+      <div class="card-body text-center">
+        <h5 class="card-title">View Vehicles</h5>
+        <p class="card-text">Browse the list of registered vehicles and details.</p>
+        <a href="{{ url_for('vehicles') }}" class="btn btn-success">View Vehicles</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="row" data-aos="fade-up" data-aos-delay="200">
+  <div class="col-12">
+    <div class="card bg-transparent border-0">
+      <div class="card-body text-center">
+        <h4 class="card-title">Statistics</h4>
+        <p class="card-text">Total Registered Vehicles: <strong>{{ total_vehicles }}</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

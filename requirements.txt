@@ -1,0 +1,7 @@
+Flask==2.2.5
+opencv-python==4.7.0.72
+numpy==1.24.3
+imutils==0.5.4
+easyocr==1.6.2
+mysql-connector-python==8.0.33
+matplotlib==3.7.2
